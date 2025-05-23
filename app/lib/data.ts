@@ -29,7 +29,7 @@ export async function fetchRevenue() {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
 
@@ -57,7 +57,7 @@ export async function fetchLatestInvoices() {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const result = await client.query(`
@@ -89,7 +89,7 @@ export async function fetchCardData() {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const invoiceCountPromise = await client.query(`select count(*) from invoices`);
@@ -143,7 +143,7 @@ export async function fetchFilteredInvoices(
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const invoices = await client.query(`
@@ -182,7 +182,7 @@ export async function fetchInvoicesPages(query: string) {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const count = await client.query(`
@@ -214,7 +214,7 @@ export async function fetchInvoiceById(id: string) {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const data = await client.query(`
@@ -245,7 +245,7 @@ export async function fetchCustomers() {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const data = await client.query(`
@@ -304,7 +304,7 @@ export async function getUser(email: string) {
       host: process.env.POSTGRES_HOST,
       database: process.env.POSTGRES_DATABASE,
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: process.env.POSTGRES_PORT,
     });
     await client.connect();
     const result = await client.query('select * from users where email = $1',[email]);
